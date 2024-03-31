@@ -65,7 +65,7 @@ def recognize(region):
                 case _: return 'W'
     return '_'
 
-image = plt.imread('symbols.png')
+image = plt.imread('alphabet_ext.png')
 image = np.mean(image, 2)
 image[image>0] = 1
 
