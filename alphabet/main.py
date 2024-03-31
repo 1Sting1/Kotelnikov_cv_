@@ -30,12 +30,12 @@ def recognize(region):
         return '-'
     else:
         holes = count_holes(region)
-        if holes == 2: #B 8
+        if holes == 2:
             if has_line(region, False) and region.image[0, 0] > 0:
                 return 'B'
             else:
                 return '8'
-        if holes == 1: #A 0
+        if holes == 1:
             ny, nx = region.centroid_local[0]/region.image.shape[0], region.centroid_local[1]/region.image.shape[1]
             if np.isclose(ny, nx, 0.05):
                 if has_line(region, False):
@@ -51,7 +51,7 @@ def recognize(region):
                     else:
                         return 'P'
                 return 'A'
-        else: # W X / * 1
+        else: 
             if has_line(region, False):
                 return '1'
             if has_line(region):
@@ -80,7 +80,6 @@ path.mkdir(exist_ok=True)
 plt.figure()
 for i, region in enumerate(regionprops(labeled)):
     symbol = recognize(region)
-    #if symbol == 'P' or symbol == 'D':
     result[symbol] += 1
 
     plt.clf()
